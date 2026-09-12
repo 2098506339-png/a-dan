@@ -15,21 +15,21 @@ const characters = [
   {
     name: "森川汐",
     role: "声音记录者",
-    image: "/assets/morigawa-shio.png",
+    image: "/assets/morigawa-shio.jpg",
     description: "在雨声与城市回响里收集生活，用温柔的声音照亮他人的世界。",
     tone: "warm",
   },
   {
     name: "凌渊",
     role: "澜风剑宗首席",
-    image: "/assets/lingyuan.png",
+    image: "/assets/lingyuan.jpg",
     description: "外表温和有礼，内心沉静坚定；一位以水为意、以剑为路的少年。",
     tone: "blue",
   },
   {
     name: "有药",
     role: "苍灵散人",
-    image: "/assets/youyao.png",
+    image: "/assets/youyao.jpg",
     description: "散漫、神秘又带一点幽默感，让东方奇幻人物拥有鲜明的记忆点。",
     tone: "gold",
   },
@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main>
       <section className="hero" id="top">
-        <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.png" aria-label="科技城市动态背景">
+        <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.jpg" aria-label="科技城市动态背景">
           <source src="https://videos.pexels.com/video-files/34719182/14717093_1920_1080_30fps.mp4" type="video/mp4" />
         </video>
         <div className="hero-shade" />
@@ -158,19 +158,19 @@ export default function Home() {
             <p>每张设定图、每个分镜，都是世界观的一块拼图。</p>
           </div>
           <article className="project-card project-main">
-            <Image src="/assets/storyboard-sunset.png" alt="风遇画音天桥夕阳分镜" fill sizes="100vw" />
+            <Image src="/assets/storyboard-sunset.jpg" alt="风遇画音天桥夕阳分镜" fill sizes="100vw" />
             <div className="project-overlay" />
             <div className="project-meta"><span>AI 漫剧 · 2026</span><span>导演 / 分镜 / 视觉</span></div>
             <div className="project-title"><div><p>FIRST AI COMIC</p><h3>风遇画音</h3></div><button onClick={() => jumpTo("films")} aria-label="查看风遇画音视频">↗</button></div>
           </article>
           <div className="project-pair">
             <article className="project-card">
-              <Image src="/assets/storyboard-rain.png" alt="风遇画音雨夜分镜" fill sizes="(max-width: 720px) 100vw, 65vw" />
+              <Image src="/assets/storyboard-rain.jpg" alt="风遇画音雨夜分镜" fill sizes="(max-width: 720px) 100vw, 65vw" />
               <div className="project-overlay" />
               <div className="project-title"><div><p>STORYBOARD</p><h3>雨夜 · 分镜实验</h3></div><span>07 SHOTS</span></div>
             </article>
             <article className="project-card vertical-project">
-              <Image src="/assets/aureus.png" alt="黄金斩影角色设定" fill sizes="(max-width: 720px) 100vw, 35vw" />
+              <Image src="/assets/aureus.jpg" alt="黄金斩影角色设定" fill sizes="(max-width: 720px) 100vw, 35vw" />
               <div className="project-overlay" />
               <div className="project-title"><div><p>CHARACTER DESIGN</p><h3>黄金斩影</h3></div><span>ROLE STUDY</span></div>
             </article>
@@ -205,7 +205,7 @@ export default function Home() {
             <p>从一帧到下一帧，故事有了时间，也有了声音。</p>
           </div>
           <div className="film-stage">
-            <video controls playsInline preload="metadata" poster="/assets/storyboard-sunset.png">
+            <video controls playsInline preload="metadata" poster="/assets/storyboard-sunset.jpg">
               <source src="https://videos.pexels.com/video-files/34719182/14717093_1920_1080_30fps.mp4" type="video/mp4" />
               你的浏览器暂不支持视频播放。
             </video>

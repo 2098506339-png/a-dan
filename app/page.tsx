@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import CursorEffects from "@/components/CursorEffects";
+import Particles from "@/components/Particles";
 
 type Language = "zh" | "en";
 
@@ -264,6 +265,9 @@ export default function Home() {
         <div className="hero-rail"><span>SCROLL TO EXPLORE</span><a href="#story" aria-label={t.accessibility.scroll}>↓</a></div>
       </section>
 
+      <div className="post-hero-shell">
+        <div className="post-hero-particles"><Particles /></div>
+        <div className="post-hero-content">
       <section className="intro-band" id="about">
         <div className="container intro-grid">
           <p className="eyebrow">{t.about.eyebrow}</p>
@@ -381,6 +385,8 @@ export default function Home() {
           <span>© 2026 WANDOU STUDIO</span>
         </div>
       </footer>
+        </div>
+      </div>
     </main>
   );
 }

@@ -394,9 +394,59 @@ video {
   font-size: 1.5rem;
 }
 
+.post-hero-shell {
+  position: relative;
+  isolation: isolate;
+  background: #050706;
+}
+
+.post-hero-particles {
+  position: sticky;
+  z-index: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 22%, rgba(61, 108, 175, 0.11), transparent 34%),
+    radial-gradient(circle at 82% 72%, rgba(183, 255, 24, 0.06), transparent 30%),
+    #050706;
+}
+
+.post-hero-particles::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 7, 6, 0.26), transparent 32%, transparent 68%, rgba(5, 7, 6, 0.2));
+  pointer-events: none;
+}
+
+.post-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.particles-container,
+.particles-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.particles-container {
+  position: relative;
+}
+
+.particles-container canvas {
+  display: block;
+  opacity: 0.96;
+  mix-blend-mode: screen;
+}
+
 .intro-band {
   padding: 130px 0;
-  background: var(--paper);
+  background: linear-gradient(180deg, rgba(5, 7, 6, 0.98) 0, rgba(239, 242, 237, 0.95) 120px, rgba(239, 242, 237, 0.9) 100%);
   color: var(--ink);
 }
 
@@ -457,10 +507,11 @@ video {
 
 .story-section {
   background:
+    linear-gradient(180deg, rgba(239, 242, 237, 0.9) 0, rgba(5, 7, 6, 0.92) 130px, rgba(5, 7, 6, 0.74) 100%),
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    var(--ink);
-  background-size: 72px 72px;
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 72px 72px, 72px 72px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 .section-head {
@@ -585,7 +636,7 @@ video {
 }
 
 .project-section {
-  background: var(--paper);
+  background: linear-gradient(180deg, rgba(5, 7, 6, 0.74) 0, rgba(239, 242, 237, 0.95) 130px, rgba(239, 242, 237, 0.9) 100%);
   color: var(--ink);
 }
 
@@ -716,7 +767,7 @@ video {
 }
 
 .strength-section {
-  background: #080a09;
+  background: linear-gradient(180deg, rgba(239, 242, 237, 0.9) 0, rgba(8, 10, 9, 0.92) 130px, rgba(8, 10, 9, 0.72) 100%);
 }
 
 .strength-layout {
@@ -791,7 +842,7 @@ video {
 }
 
 .film-section {
-  background: #0c0f0d;
+  background: linear-gradient(180deg, rgba(8, 10, 9, 0.72) 0, rgba(12, 15, 13, 0.78) 130px, rgba(12, 15, 13, 0.68) 100%);
 }
 
 .film-heading {
@@ -862,7 +913,7 @@ footer {
   position: relative;
   overflow: hidden;
   padding: 140px 0 26px;
-  background: var(--acid);
+  background: linear-gradient(180deg, rgba(12, 15, 13, 0.68) 0, rgba(183, 255, 24, 0.95) 135px, rgba(183, 255, 24, 0.95) 100%);
   color: var(--ink);
 }
 

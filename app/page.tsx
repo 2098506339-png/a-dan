@@ -210,7 +210,7 @@ export default function Home() {
     <main className={language === "en" ? "lang-en" : "lang-zh"}>
       <section className="hero" id="top">
         <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.jpg" aria-label={t.accessibility.videoBackground}>
-          <source src="https://videos.pexels.com/video-files/34719182/14717093_1920_1080_30fps.mp4" type="video/mp4" />
+          <source src="/assets/wandou-homepage-0914.mp4" type="video/mp4" />
         </video>
         <div className="hero-shade" />
         <div className="noise" />

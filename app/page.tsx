@@ -366,7 +366,7 @@ export default function Home() {
           </div>
           <div className="film-stage">
             <video controls playsInline preload="metadata" poster="/assets/storyboard-sunset.jpg">
-              <source src="https://videos.pexels.com/video-files/34719182/14717093_1920_1080_30fps.mp4" type="video/mp4" />
+              <source src="/assets/wandou-homepage-0914.mp4" type="video/mp4" />
               {t.films.fallback}
             </video>
             <div className="film-badge">{t.films.badge}</div>

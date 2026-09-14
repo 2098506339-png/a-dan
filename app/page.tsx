@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import CursorEffects from "@/components/CursorEffects";
+import MotionDirector from "@/components/MotionDirector";
 import Particles from "@/components/Particles";
 
 type Language = "zh" | "en";
@@ -210,6 +211,7 @@ export default function Home() {
 
   return (
     <main className={language === "en" ? "lang-en" : "lang-zh"}>
+      <MotionDirector />
       <CursorEffects />
       <section className="hero" id="top">
         <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.jpg" aria-label={t.accessibility.videoBackground}>
@@ -241,7 +243,10 @@ export default function Home() {
 
         <div className="hero-content container">
           <div className="hero-kicker"><span /> AI COMIC CREATOR · 2026</div>
-          <h1>{t.hero.title[0]}<em>{t.hero.title[1]}</em></h1>
+          <h1 className="hero-title">
+            <span className="title-line"><span>{t.hero.title[0]}</span></span>
+            <em className="title-line"><span>{t.hero.title[1]}</span></em>
+          </h1>
           <div className="hero-bottom">
             <p>{t.hero.intro[0]}<br />{t.hero.intro[1]}</p>
             <form className="search" onSubmit={onSearch} role="search">

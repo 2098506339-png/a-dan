@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import CursorEffects from "@/components/CursorEffects";
 
 type Language = "zh" | "en";
 
@@ -208,6 +209,7 @@ export default function Home() {
 
   return (
     <main className={language === "en" ? "lang-en" : "lang-zh"}>
+      <CursorEffects />
       <section className="hero" id="top">
         <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.jpg" aria-label={t.accessibility.videoBackground}>
           <source src="/assets/wandou-homepage-0914.mp4" type="video/mp4" />

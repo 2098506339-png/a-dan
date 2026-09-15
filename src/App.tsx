@@ -1,6 +1,4 @@
-"use client";
-
-import Image from "next/image";
+import Image from "@/components/PortfolioImage";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import CursorEffects from "@/components/CursorEffects";
 import MotionDirector from "@/components/MotionDirector";

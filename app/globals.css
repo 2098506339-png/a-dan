@@ -528,13 +528,22 @@ video {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(5, 7, 6, 0.26), transparent 32%, transparent 68%, rgba(5, 7, 6, 0.2));
+  background: linear-gradient(90deg, rgba(5, 7, 6, 0.12), transparent 28%, transparent 72%, rgba(5, 7, 6, 0.1));
   pointer-events: none;
 }
 
 .post-hero-content {
   position: relative;
   z-index: 1;
+}
+
+.story-section,
+.project-section,
+.strength-section,
+.film-section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
 }
 
 .particles-container,
@@ -549,7 +558,7 @@ video {
 
 .particles-container canvas {
   display: block;
-  opacity: 0.96;
+  opacity: 1;
   mix-blend-mode: screen;
 }
 
@@ -856,6 +865,10 @@ video {
   grid-template-columns: 1.35fr 0.75fr;
   gap: 18px;
   margin-top: 18px;
+}
+
+.project-pair.project-single {
+  grid-template-columns: 1fr;
 }
 
 .project-pair .project-card:first-child img {

@@ -1,8 +1,9 @@
 import Image from "@/components/PortfolioImage";
-import { FormEvent, useEffect, useMemo, useState } from "react";
-import CursorEffects from "@/components/CursorEffects";
+import { FormEvent, lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import MotionDirector from "@/components/MotionDirector";
-import Particles from "@/components/Particles";
+
+const CursorEffects = lazy(() => import("@/components/CursorEffects"));
+const Particles = lazy(() => import("@/components/Particles"));
 
 type Language = "zh" | "en";
 
@@ -44,9 +45,9 @@ const content = {
       title: ["从第一次尝试，", "到一个自己的角色宇宙。"],
       copy: "老师带我打开 AI 漫剧的大门。我们从一段故事开始，做角色、想镜头、调气氛，最后让《风遇画音》真正动起来。",
       characters: [
-        { name: "森川汐", role: "声音记录者", image: "/assets/morigawa-shio.jpg", description: "在雨声与城市回响里收集生活，用温柔的声音照亮他人的世界。", tone: "warm" },
-        { name: "凌渊", role: "澜风剑宗首席", image: "/assets/lingyuan.jpg", description: "外表温和有礼，内心沉静坚定；一位以水为意、以剑为路的少年。", tone: "blue" },
-        { name: "有药", role: "苍灵散人", image: "/assets/youyao.jpg", description: "散漫、神秘又带一点幽默感，让东方奇幻人物拥有鲜明的记忆点。", tone: "gold" },
+        { name: "森川汐", role: "声音记录者", image: "/assets/morigawa-shio.webp", description: "在雨声与城市回响里收集生活，用温柔的声音照亮他人的世界。", tone: "warm" },
+        { name: "凌渊", role: "澜风剑宗首席", image: "/assets/lingyuan.webp", description: "外表温和有礼，内心沉静坚定；一位以水为意、以剑为路的少年。", tone: "blue" },
+        { name: "有药", role: "苍灵散人", image: "/assets/youyao.webp", description: "散漫、神秘又带一点幽默感，让东方奇幻人物拥有鲜明的记忆点。", tone: "gold" },
       ],
     },
     projects: {
@@ -55,7 +56,6 @@ const content = {
       copy: "每张设定图、每个分镜，都是世界观的一块拼图。",
       main: { tag: "第一部 AI 漫剧", title: "风遇画音", year: "AI 漫剧 · 2026", roles: "导演 / 分镜 / 视觉" },
       rain: { tag: "分镜设计", title: "雨夜 · 分镜实验", meta: "07 镜头" },
-      aureus: { tag: "角色设计", title: "黄金斩影", meta: "角色研究" },
     },
     strengths: {
       eyebrow: "03 / 个人优势",
@@ -72,10 +72,10 @@ const content = {
       eyebrow: "04 / 作品视频",
       title: "让画面开始呼吸。",
       copy: "从一帧到下一帧，故事有了时间，也有了声音。",
-      badge: "概念预览",
-      name: "《风遇画音》概念预览",
-      status: "AI 漫剧 · 即将上线",
-      note: "当前基础版使用氛围样片作为视频占位。后续提供成片后，可直接替换为正式作品视频。",
+      badge: "作品视频",
+      name: "《风遇画音》作品视频",
+      status: "AI 漫剧 · 2026",
+      note: "从角色设定到分镜与声音，让画面真正进入故事的时间。",
       fallback: "你的浏览器暂不支持视频播放。",
     },
     footer: {
@@ -124,9 +124,9 @@ const content = {
       title: ["From a first experiment", "to a universe of characters."],
       copy: "My teacher opened the door to AI comics. We began with a story, shaped the characters, planned each shot and tuned the atmosphere—until Wind Meets Painted Sound came alive.",
       characters: [
-        { name: "Morikawa Shio", role: "SOUND COLLECTOR", image: "/assets/morigawa-shio.jpg", description: "She gathers rain, voices and echoes from the city, using gentle sound to brighten another person’s world.", tone: "warm" },
-        { name: "Ling Yuan", role: "MASTER SWORDSMAN", image: "/assets/lingyuan.jpg", description: "Warm and courteous on the surface, calm and steadfast within—a young swordsman guided by the flow of water.", tone: "blue" },
-        { name: "Youyao", role: "WANDERING HEALER", image: "/assets/youyao.jpg", description: "Laid-back, mysterious and quietly funny, bringing a memorable edge to an Eastern fantasy world.", tone: "gold" },
+        { name: "Morikawa Shio", role: "SOUND COLLECTOR", image: "/assets/morigawa-shio.webp", description: "She gathers rain, voices and echoes from the city, using gentle sound to brighten another person’s world.", tone: "warm" },
+        { name: "Ling Yuan", role: "MASTER SWORDSMAN", image: "/assets/lingyuan.webp", description: "Warm and courteous on the surface, calm and steadfast within—a young swordsman guided by the flow of water.", tone: "blue" },
+        { name: "Youyao", role: "WANDERING HEALER", image: "/assets/youyao.webp", description: "Laid-back, mysterious and quietly funny, bringing a memorable edge to an Eastern fantasy world.", tone: "gold" },
       ],
     },
     projects: {
@@ -135,7 +135,6 @@ const content = {
       copy: "Every character sheet and storyboard is one more piece of a growing universe.",
       main: { tag: "FIRST AI COMIC", title: "Wind Meets Painted Sound", year: "AI COMIC · 2026", roles: "DIRECTING / STORYBOARD / VISUALS" },
       rain: { tag: "STORYBOARD", title: "Rain Study", meta: "07 SHOTS" },
-      aureus: { tag: "CHARACTER DESIGN", title: "Aureus Noctis", meta: "ROLE STUDY" },
     },
     strengths: {
       eyebrow: "03 / MY STRENGTHS",
@@ -152,10 +151,10 @@ const content = {
       eyebrow: "04 / FILMS",
       title: "Frames begin to breathe.",
       copy: "From one frame to the next, the story gains time—and a voice.",
-      badge: "CONCEPT PREVIEW",
-      name: "Wind Meets Painted Sound — Concept",
-      status: "AI COMIC · COMING SOON",
-      note: "This first version uses an atmospheric sample as a placeholder. The finished film can be dropped in as soon as it is ready.",
+      badge: "FEATURED FILM",
+      name: "Wind Meets Painted Sound — Film",
+      status: "AI COMIC · 2026",
+      note: "From character design to storyboards and sound, every frame now moves inside the story’s own time.",
       fallback: "Your browser does not support video playback.",
     },
     footer: {
@@ -173,6 +172,9 @@ export default function Home() {
   const [language, setLanguage] = useState<Language>("zh");
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [enhancementsReady, setEnhancementsReady] = useState(false);
+  const [filmReady, setFilmReady] = useState(false);
+  const filmRef = useRef<HTMLDivElement>(null);
   const t = content[language];
 
   useEffect(() => {
@@ -183,6 +185,33 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
   }, [language]);
+
+  useEffect(() => {
+    const activate = () => setEnhancementsReady(true);
+    const fallback = window.setTimeout(activate, 3000);
+    window.addEventListener("wandou:opening-complete", activate, { once: true });
+
+    return () => {
+      window.clearTimeout(fallback);
+      window.removeEventListener("wandou:opening-complete", activate);
+    };
+  }, []);
+
+  useEffect(() => {
+    const film = filmRef.current;
+    if (!film) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          setFilmReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(film);
+    return () => observer.disconnect();
+  }, []);
 
   const results = useMemo(() => {
     const value = query.trim().toLowerCase();
@@ -210,10 +239,10 @@ export default function Home() {
   return (
     <main className={language === "en" ? "lang-en" : "lang-zh"}>
       <MotionDirector />
-      <CursorEffects />
+      {enhancementsReady && <Suspense fallback={null}><CursorEffects /></Suspense>}
       <section className="hero" id="top">
-        <video className="hero-video" autoPlay muted loop playsInline poster="/assets/storyboard-sunset.jpg" aria-label={t.accessibility.videoBackground}>
-          <source src="/assets/wandou-homepage-0914.mp4" type="video/mp4" />
+        <video className="hero-video" autoPlay muted loop playsInline preload="auto" poster="/assets/wandou-homepage-poster.webp" aria-label={t.accessibility.videoBackground}>
+          <source src="/assets/wandou-homepage-optimized.mp4" type="video/mp4" />
         </video>
         <div className="hero-shade" />
         <div className="noise" />
@@ -269,7 +298,7 @@ export default function Home() {
       </section>
 
       <div className="post-hero-shell">
-        <div className="post-hero-particles"><Particles /></div>
+        <div className="post-hero-particles">{enhancementsReady && <Suspense fallback={null}><Particles /></Suspense>}</div>
         <div className="post-hero-content">
       <section className="intro-band" id="about">
         <div className="container intro-grid">
@@ -295,7 +324,7 @@ export default function Home() {
             {t.story.characters.map((character, index) => (
               <article className={`character-card ${character.tone}`} key={character.name}>
                 <div className="character-image">
-                  <Image src={character.image} alt={`${character.name} ${t.accessibility.characterImage}`} fill sizes="(max-width: 720px) 100vw, (max-width: 1050px) 50vw, 34vw" priority={index === 0} />
+                  <Image src={character.image} alt={`${character.name} ${t.accessibility.characterImage}`} fill sizes="(max-width: 720px) 100vw, (max-width: 1050px) 50vw, 34vw" />
                   <span>0{index + 1}</span>
                 </div>
                 <div className="character-info">
@@ -316,21 +345,16 @@ export default function Home() {
             <p>{t.projects.copy}</p>
           </div>
           <article className="project-card project-main">
-            <Image src="/assets/storyboard-sunset.jpg" alt={t.projects.main.title} fill sizes="100vw" />
+            <Image src="/assets/storyboard-sunset.webp" alt={t.projects.main.title} fill sizes="100vw" />
             <div className="project-overlay" />
             <div className="project-meta"><span>{t.projects.main.year}</span><span>{t.projects.main.roles}</span></div>
             <div className="project-title"><div><p>{t.projects.main.tag}</p><h3>{t.projects.main.title}</h3></div><button onClick={() => jumpTo("films")} aria-label={t.accessibility.projectVideo}>↗</button></div>
           </article>
-          <div className="project-pair">
+          <div className="project-pair project-single">
             <article className="project-card">
-              <Image src="/assets/storyboard-rain.jpg" alt={t.projects.rain.title} fill sizes="(max-width: 720px) 100vw, 65vw" />
+              <Image src="/assets/storyboard-rain.webp" alt={t.projects.rain.title} fill sizes="100vw" />
               <div className="project-overlay" />
               <div className="project-title"><div><p>{t.projects.rain.tag}</p><h3>{t.projects.rain.title}</h3></div><span>{t.projects.rain.meta}</span></div>
-            </article>
-            <article className="project-card vertical-project">
-              <Image src="/assets/aureus.jpg" alt={t.projects.aureus.title} fill sizes="(max-width: 720px) 100vw, 35vw" />
-              <div className="project-overlay" />
-              <div className="project-title"><div><p>{t.projects.aureus.tag}</p><h3>{t.projects.aureus.title}</h3></div><span>{t.projects.aureus.meta}</span></div>
             </article>
           </div>
         </div>
@@ -362,9 +386,19 @@ export default function Home() {
             <h2>{t.films.title}</h2>
             <p>{t.films.copy}</p>
           </div>
-          <div className="film-stage">
-            <video controls playsInline preload="metadata" poster="/assets/storyboard-sunset.jpg">
-              <source src="/assets/wandou-homepage-0914.mp4" type="video/mp4" />
+          <div className="film-stage" ref={filmRef}>
+            <video
+              controls
+              playsInline
+              muted={false}
+              preload="none"
+              poster={filmReady ? "/assets/wandou-showcase-poster.jpg" : undefined}
+              onLoadedMetadata={(event) => {
+                event.currentTarget.muted = false;
+                event.currentTarget.volume = 1;
+              }}
+            >
+              <source src="/assets/wandou-showcase.mp4" type="video/mp4" />
               {t.films.fallback}
             </video>
             <div className="film-badge">{t.films.badge}</div>
